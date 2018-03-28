@@ -1,0 +1,106 @@
+<div class ="container">
+  <div class="table-responsive">
+    <h2>Корзина</h2>
+    <table *ngIf="successFlag&&items.length"  class="table table-striped">
+      <tr class ="active">
+        <th>Номенклатура</th>
+        <th>Склад</th>
+        <th>Количество</th>
+        <th>Тип Цены</th>
+        <th>Валюта</th>
+      </tr>
+      
+      <tr *ngFor="let item of items" class="success">
+        <td>
+          <a (click)="deleteFromCart(item)" >
+            <img src="http://dosug.md/i/news/reset.png" alt="Удалить из корзины" style="vertical-align: middle" title="Удалить из корзины">
+          </a>
+          {{item.nom}}
+        </td>
+        <td>{{item.sklad}}</td>
+        <td style="text-align: center;">{{item.count}}</td>
+        <td>{{item.price_type}}</td>
+        <td>
+          <a (click)="SendTo1C(item)" >
+            <img src="http://xn--1-7sb3aaogh.xn--p1ai/images/onlinezakaz.png" alt="Отправить заказ" style="vertical-align: middle" title="Отправить заказ" class="pull-right">
+          </a>     
+          {{item.currency}}
+        </td>
+      </tr>
+      
+    </table>
+    </div>
+
+
+<!--
+<div class="table tableb">
+  <div class="tr header">
+    <div class="th">Номенклатура</div>
+    <div class="th">Склад</div>
+    <div class="th">Количество</div>
+    <div class="th">Тип Цены</div>
+    <div class="th">Валюта</div>
+  </div>
+  <div class="tbody" *ngFor = "let store of ArrGroupElements; let i = index ">
+    <div>
+      Склад... {{ArrGroupElements[i].store}} 
+    </div>
+    <div class="tr" *ngFor = "let item of store.items; let j = index ">
+      <div class="td">{{item.nom}}</div>
+      <div class="td">{{item.sklad}}</div>
+      <div class="td">{{item.count}}</div>
+      <div class="td">{{item.price_type}}</div>
+      <div class="td">{{item.currency}}</div>
+    </div>
+  </div>
+</div>
+-->
+
+
+
+
+
+  <div *ngIf = "items.length" class="pull-right" ><button type="button"  class="btn " style="margin: 3px 3px 15px 10px" (click) = "sendAllTo1C()">Заказать</button></div>
+  <div *ngIf = "items.length" class="pull-right" ><button type="button"  class="btn " style="margin: 3px 3px 15px 10px" (click) = "deleteFromCartAll()">Удалить</button></div>
+    <div *ngIf="alertTrigger" class="alert alert-success col-sm-12">
+      <strong *ngIf="created">{{responseAddingTo1C}}</strong>
+      <strong *ngIf="deleted">Удалено строк: {{HTTPVar1['0'].affectedRows}}</strong>
+    </div>
+  <div *ngIf="loading" class="loadingGif">
+    <img src="./assets/DownloadingGif/6.gif" class="loadingGif" alt="Image"> 
+    <p style="font-weight: bold" > Запрос обрабатывается... </p>
+  </div>
+<!--
+<a class="my_images" href="./assets/DownloadingGif/6.gif">View Image</a>
+
+<form method="post" enctype="multipart/form-data">
+    File: <input type="file" name="myFileInputField" multiple="multiple" id = 'myFileInputField'>
+      <div id="dropZone">
+        Для загрузки, перетащите файл сюда.
+      </div>
+    <input type="submit" value="Upload" (click)="submit()">
+</form>
+-->
+<!--
+  <input type="file" (change)="fileChange($event)" placeholder="Upload file" accept=".pdf,.doc,.docx">
+-->
+
+<!--
+  <input type="file" name="downloaded_file" multiple="multiple" id = 'myFileInputField'>
+  <button value="Upload" (click)="submit()" name="submit" class="btn btn-primary">submit</button>
+-->
+
+<!--
+      <div class=" panel-body"><img src="http://188.237.141.56:4444/gif/6.gif"  alt="Image"></div>
+
+  ./assets/assets/DownloadingGif/6.gif
+-->
+
+  <div class="overlay" title="окно"></div>
+  <div class="popup">
+    <div class="close_window">x</div>
+  <!--<p>Тут будет текст</p>-->
+  </div>
+</div>
+
+<!--<a class="open_window"href="#">click</a>-->
